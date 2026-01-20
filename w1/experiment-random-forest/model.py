@@ -9,7 +9,7 @@ train = pd.read_csv('datasets/train.csv')
 test =  pd.read_csv('datasets/test.csv')
 
 # Train a simple model
-model = RandomForestClassifier(n_estimators=100, random_state=42)
+model = RandomForestClassifier(n_estimators=50, random_state=42)
 model.fit(
 	train.drop('class', axis=1),
 	train['class']
