@@ -1,0 +1,4 @@
+[core]
+    remote = remote
+['remote "remote"']
+    url = /home/aniket/DevOps/.dvc_store
