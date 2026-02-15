@@ -21,6 +21,8 @@ predictions = model.predict(test.drop('class', axis=1))
 accuracy = accuracy_score(test['class'], predictions) * 100
 print(f'Model accuracy: {accuracy:.2f}%')
 
+assert accuracy >= 80, "Model accuracy is less than 80%, please check recent changes to training or features."
+
 # Save the model
 with open('model_iris.pkl', 'wb') as f:
 	pickle.dump(model, f)
