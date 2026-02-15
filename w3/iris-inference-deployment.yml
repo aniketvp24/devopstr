@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: iris-inference-deployment
+  labels:
+    apps: iris-inference-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: iris-inference-app
+  template:
+    metadata:
+      labels:
+        app: iris-inference-app
+    spec:
+      containers:
+      - name: iris-inference-server
+        image: iris-inference-server:latest
+        imagePullPolicy: Never
+        resources:
+          requests:
+            cpu: "500m"
+            memory: "512Mi"
+          limits:
+            cpu: "500m"
+            memory: "512Mi"
+        ports:
+          - containerPort: 8000
+
+
+  
