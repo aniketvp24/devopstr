@@ -1,0 +1,40 @@
+name: Test model from week 1
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+          cache: "pip"
+
+      - name: Show Python version
+        run: python --version
+
+      - name: Install dependencies
+        run: python -m pip install -r requirements.txt
+
+      - name: Download dataset
+        working-directory: w1/experiment-random-forest
+        run: |
+          set -e
+          chmod +x download_iris.sh
+          ./download_iris.sh
+
+      - name: Train and test the model
+        working-directory: w1/experiment-random-forest
+        run: |
+          set -e
+          python model.py
